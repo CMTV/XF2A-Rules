@@ -1,0 +1,12 @@
+<xf:title>{{ phrase('CMTV_Rules_import_rules') }}</xf:title>
+
+<xf:form action="{{ link('rules/import-do') }}" upload="true" class="block">
+	<div class="block-container">
+		<div class="block-body">
+			<xf:inforow>
+				<xf:uploadrow name="upload" label="{{ phrase('CMTV_Rules_rules_xml_file') }}" accept=".xml" />
+			</xf:inforow>
+		</div>
+		<xf:submitrow fa="fa-upload" submit="{{ phrase('button.import') }}" />
+	</div>
+</xf:form>

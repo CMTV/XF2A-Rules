@@ -1,0 +1,4 @@
+<?xml version="1.0" encoding="utf-8"?>
+<help_pages>
+  <help_page page_id="rules" page_name="rules" display_order="45" callback_class="CMTV\Rules\Help\Rules" callback_method="renderRules" advanced_mode="1" active="1"/>
+</help_pages>

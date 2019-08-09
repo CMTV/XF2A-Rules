@@ -1,0 +1,8 @@
+{
+    "additional_files": [
+        "js/CMTV/Rules"
+    ],
+    "minify": [
+        "js/CMTV/Rules/rule-highlighter.js"
+    ]
+}

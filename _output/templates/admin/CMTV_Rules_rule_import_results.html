@@ -1,0 +1,49 @@
+<xf:title>{{ phrase('CMTV_Rules_import_results') }}</xf:title>
+
+<div class="block">
+	<div class="block-container">
+		<div class="block-body">
+			<xf:datalist>
+			
+				<xf:if is="$totalSkipped">
+					<tbody class="dataList-rowGroup">
+						<xf:datarow rowtype="subsection" label="{{ phrase('CMTV_Rules_skipped_rules') }} ({$totalSkipped})" />
+
+						<xf:foreach loop="$skipped" value="$skip">
+							<xf:datarow label="{$skip.title}" hint="{$skip.id}" />
+						</xf:foreach>
+					</tbody>
+				</xf:if>
+				
+				<tbody class="dataList-rowGroup">
+					<xf:datarow rowtype="subsection" label="{{ phrase('CMTV_Rules_rule_categories') }} ({$totalCategories})" />
+
+					<xf:if is="$totalCategories">
+						<xf:foreach loop="$categories" value="$category">
+							<xf:datarow label="{$category.title}" hint="{$category.id}" />
+						</xf:foreach>
+					<xf:else />
+						<xf:datarow rowclass="dataList-row--noHover dataList-row--note">
+							<xf:cell>{{ phrase('CMTV_Rules_no_categories_have_been_imported') }}</xf:cell>
+						</xf:datarow>
+					</xf:if>
+				</tbody>
+				
+				<tbody class="dataList-rowGroup">
+					<xf:datarow rowtype="subsection" label="{{ phrase('CMTV_Rules_rules') }} ({$totalRules})" />
+
+					<xf:if is="$totalCategories">
+						<xf:foreach loop="$rules" value="$rule">
+							<xf:datarow label="{$rule.title}" hint="{$rule.id}" />
+						</xf:foreach>
+					<xf:else />
+						<xf:datarow rowclass="dataList-row--noHover dataList-row--note">
+							<xf:cell>{{ phrase('CMTV_Rules_no_rules_have_been_imported') }}</xf:cell>
+						</xf:datarow>
+					</xf:if>
+				</tbody>
+				
+			</xf:datalist>
+		</div>
+	</div>
+</div>

@@ -1,0 +1,52 @@
+<xf:if is="$rule.isInsert()">
+	<xf:title>{{ phrase('CMTV_Rules_add_rule') }}</xf:title>
+<xf:else />
+	<xf:title>{{ phrase('CMTV_Rules_edit_rule:') }} {$rule.title}</xf:title>
+</xf:if>
+
+<xf:pageaction if="$rule.isUpdate()">
+	<xf:button href="{{ link('rules/delete', $rule) }}" icon="delete" overlay="true" />
+</xf:pageaction>
+
+<xf:form action="{{ link('rules/save', $rule) }}" ajax="true" class="block">
+	<div class="block-container">
+		<div class="block-body">
+			
+			<xf:if is="{{ $rule.exists() }}">
+				<xf:formrow label="{{ phrase('CMTV_Rules_rule_id') }}"
+							explain="{{ phrase('CMTV_Rules_this_is_unique_identifier_for_rule_cannot_be_changed') }}">
+					<span class="u-ltr">{$rule.rule_id}</span>
+				</xf:formrow>
+			<xf:else />
+				<xf:textboxrow name="rule_id"
+							   label="{{ phrase('CMTV_Rules_rule_id') }}"
+							   explain="{{ phrase('CMTV_Rules_rule_id_explain') }}"
+							   dir="ltr" />
+			</xf:if>
+			
+			<hr class="formRowSep" />
+			
+			<xf:textboxrow name="title" value="{{ $rule.rule_id ? $rule.MasterTitle.phrase_text : ''  }}"
+						   label="{{ phrase('title') }}"/>
+
+			<xf:textarearow name="description" value="{{ $rule.rule_id ? $rule.MasterDescription.phrase_text : ''  }}" autosize="true"
+							label="{{ phrase('description') }}"
+							hint="{{ phrase('you_may_use_html') }}"
+							explain="{{ phrase('CMTV_Rules_rule_description_explain') }}" />
+
+			<hr class="formRowSep" />
+
+			<xf:selectrow name="rule_category_id" value="{$rule.rule_category_id}"
+						  label="{{ phrase('CMTV_Rules_rule_category') }}">
+
+				<xf:option value="0" label="{{ phrase('(none)') }}" />
+				<xf:options source="{$ruleCategories}" />
+			</xf:selectrow>
+
+			<xf:macro template="display_order_macros" name="row"
+					  arg-value="{$rule.display_order}" />
+
+		</div>
+		<xf:submitrow sticky="true" icon="save" />
+	</div>
+</xf:form>

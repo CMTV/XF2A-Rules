@@ -1,0 +1,5 @@
+<?xml version="1.0" encoding="utf-8"?>
+<routes>
+  <route route_type="admin" route_prefix="rule-categories" format=":int&lt;rule_category_id&gt;/" controller="CMTV\Rules:RuleCategory" context="rules"/>
+  <route route_type="admin" route_prefix="rules" format=":str&lt;rule_id&gt;/" controller="CMTV\Rules:Rule" context="CMTV_Rules"/>
+</routes>

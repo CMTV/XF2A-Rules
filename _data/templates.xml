@@ -1,0 +1,389 @@
+<?xml version="1.0" encoding="utf-8"?>
+<templates>
+  <template type="admin" title="CMTV_Rules_delete_rules" version_id="1000070" version_string="1.0.0"><![CDATA[<xf:title>{{ phrase('confirm_action') }}</xf:title>
+
+<xf:form action="{{ link('rule-categories/deleteRules', $ruleCategory) }}" ajax="true" class="block">
+	<div class="block-container">
+		<div class="block-body">
+			<xf:inforow rowtype="confirm">
+				{{ phrase('please_confirm_that_you_want_to_delete_following:') }}
+				<strong>{{ phrase('CMTV_Rules_rules') }} ({$totalRules})</strong>
+			</xf:inforow>
+		</div>
+		<xf:submitrow rowtype="simple" icon="delete" />
+	</div>
+</xf:form>]]></template>
+  <template type="admin" title="CMTV_Rules_rule_category_edit" version_id="1000070" version_string="1.0.0"><![CDATA[<xf:if is="$ruleCategory.isInsert()">
+	<xf:title>{{ phrase('CMTV_Rules_add_rule_category') }}</xf:title>
+	<xf:else />
+	<xf:title>{{ phrase('CMTV_Rules_edit_rule_category:') }} {$ruleCategory.title}</xf:title>
+</xf:if>
+
+<xf:pageaction if="$ruleCategory.isUpdate()">
+	<xf:button href="{{ link('rule-categories/delete', $ruleCategory) }}" icon="delete" overlay="true" />
+</xf:pageaction>
+
+<xf:form action="{{ link('rule-categories/save', $ruleCategory) }}" ajax="true" class="block">
+	<div class="block-container">
+		<div class="block-body">
+			<xf:textboxrow name="title" value="{{ $ruleCategory.exists() ? $ruleCategory.MasterTitle.phrase_text : '' }}"
+						   label="{{ phrase('title') }}"/>
+
+			<xf:textboxrow name="icon" value="{$ruleCategory.icon}" fa="{$ruleCategory.icon}" 
+						   label="{{ phrase('icon') }}" explain="{{ phrase('CMTV_Rules_icon_explain') }}" />
+
+			<xf:macro template="display_order_macros" name="row"
+					  arg-value="{$ruleCategory.display_order}" />
+		</div>
+
+		<xf:submitrow icon="save" />
+	</div>
+</xf:form>]]></template>
+  <template type="admin" title="CMTV_Rules_rule_edit" version_id="1000070" version_string="1.0.0"><![CDATA[<xf:if is="$rule.isInsert()">
+	<xf:title>{{ phrase('CMTV_Rules_add_rule') }}</xf:title>
+<xf:else />
+	<xf:title>{{ phrase('CMTV_Rules_edit_rule:') }} {$rule.title}</xf:title>
+</xf:if>
+
+<xf:pageaction if="$rule.isUpdate()">
+	<xf:button href="{{ link('rules/delete', $rule) }}" icon="delete" overlay="true" />
+</xf:pageaction>
+
+<xf:form action="{{ link('rules/save', $rule) }}" ajax="true" class="block">
+	<div class="block-container">
+		<div class="block-body">
+			
+			<xf:if is="{{ $rule.exists() }}">
+				<xf:formrow label="{{ phrase('CMTV_Rules_rule_id') }}"
+							explain="{{ phrase('CMTV_Rules_this_is_unique_identifier_for_rule_cannot_be_changed') }}">
+					<span class="u-ltr">{$rule.rule_id}</span>
+				</xf:formrow>
+			<xf:else />
+				<xf:textboxrow name="rule_id"
+							   label="{{ phrase('CMTV_Rules_rule_id') }}"
+							   explain="{{ phrase('CMTV_Rules_rule_id_explain') }}"
+							   dir="ltr" />
+			</xf:if>
+			
+			<hr class="formRowSep" />
+			
+			<xf:textboxrow name="title" value="{{ $rule.rule_id ? $rule.MasterTitle.phrase_text : ''  }}"
+						   label="{{ phrase('title') }}"/>
+
+			<xf:textarearow name="description" value="{{ $rule.rule_id ? $rule.MasterDescription.phrase_text : ''  }}" autosize="true"
+							label="{{ phrase('description') }}"
+							hint="{{ phrase('you_may_use_html') }}"
+							explain="{{ phrase('CMTV_Rules_rule_description_explain') }}" />
+
+			<hr class="formRowSep" />
+
+			<xf:selectrow name="rule_category_id" value="{$rule.rule_category_id}"
+						  label="{{ phrase('CMTV_Rules_rule_category') }}">
+
+				<xf:option value="0" label="{{ phrase('(none)') }}" />
+				<xf:options source="{$ruleCategories}" />
+			</xf:selectrow>
+
+			<xf:macro template="display_order_macros" name="row"
+					  arg-value="{$rule.display_order}" />
+
+		</div>
+		<xf:submitrow sticky="true" icon="save" />
+	</div>
+</xf:form>]]></template>
+  <template type="admin" title="CMTV_Rules_rule_import" version_id="1000070" version_string="1.0.0"><![CDATA[<xf:title>{{ phrase('CMTV_Rules_import_rules') }}</xf:title>
+
+<xf:form action="{{ link('rules/import-do') }}" upload="true" class="block">
+	<div class="block-container">
+		<div class="block-body">
+			<xf:inforow>
+				<xf:uploadrow name="upload" label="{{ phrase('CMTV_Rules_rules_xml_file') }}" accept=".xml" />
+			</xf:inforow>
+		</div>
+		<xf:submitrow fa="fa-upload" submit="{{ phrase('button.import') }}" />
+	</div>
+</xf:form>]]></template>
+  <template type="admin" title="CMTV_Rules_rule_import_results" version_id="1000070" version_string="1.0.0"><![CDATA[<xf:title>{{ phrase('CMTV_Rules_import_results') }}</xf:title>
+
+<div class="block">
+	<div class="block-container">
+		<div class="block-body">
+			<xf:datalist>
+			
+				<xf:if is="$totalSkipped">
+					<tbody class="dataList-rowGroup">
+						<xf:datarow rowtype="subsection" label="{{ phrase('CMTV_Rules_skipped_rules') }} ({$totalSkipped})" />
+
+						<xf:foreach loop="$skipped" value="$skip">
+							<xf:datarow label="{$skip.title}" hint="{$skip.id}" />
+						</xf:foreach>
+					</tbody>
+				</xf:if>
+				
+				<tbody class="dataList-rowGroup">
+					<xf:datarow rowtype="subsection" label="{{ phrase('CMTV_Rules_rule_categories') }} ({$totalCategories})" />
+
+					<xf:if is="$totalCategories">
+						<xf:foreach loop="$categories" value="$category">
+							<xf:datarow label="{$category.title}" hint="{$category.id}" />
+						</xf:foreach>
+					<xf:else />
+						<xf:datarow rowclass="dataList-row--noHover dataList-row--note">
+							<xf:cell>{{ phrase('CMTV_Rules_no_categories_have_been_imported') }}</xf:cell>
+						</xf:datarow>
+					</xf:if>
+				</tbody>
+				
+				<tbody class="dataList-rowGroup">
+					<xf:datarow rowtype="subsection" label="{{ phrase('CMTV_Rules_rules') }} ({$totalRules})" />
+
+					<xf:if is="$totalCategories">
+						<xf:foreach loop="$rules" value="$rule">
+							<xf:datarow label="{$rule.title}" hint="{$rule.id}" />
+						</xf:foreach>
+					<xf:else />
+						<xf:datarow rowclass="dataList-row--noHover dataList-row--note">
+							<xf:cell>{{ phrase('CMTV_Rules_no_rules_have_been_imported') }}</xf:cell>
+						</xf:datarow>
+					</xf:if>
+				</tbody>
+				
+			</xf:datalist>
+		</div>
+	</div>
+</div>]]></template>
+  <template type="admin" title="CMTV_Rules_rule_list" version_id="1000070" version_string="1.0.0"><![CDATA[<xf:title>{{ phrase('CMTV_Rules_rules') }}</xf:title>
+
+<xf:pageaction>
+	<div class="buttonGroup">
+		<xf:button href="{{ link('rules/add') }}" icon="add">{{ phrase('CMTV_Rules_add_rule') }}</xf:button>
+		<xf:button href="{{ link('rule-categories/add') }}" icon="add">{{ phrase('CMTV_Rules_add_rule_category') }}</xf:button>
+	
+		<div class="buttonGroup-buttonWrapper">
+			<xf:button class="menuTrigger" data-xf-click="menu" aria-expanded="false" aria-haspopup="true" title="{{ phrase('more_options') }}">&#8226;&#8226;&#8226;</xf:button>
+			<div class="menu" data-menu="menu" aria-hidden="true">
+				<div class="menu-content">
+					<h4 class="menu-header">{{ phrase('more_options') }}</h4>
+					<a href="{{ link('rules/sort') }}" class="menu-linkRow" data-xf-click="overlay">{{ phrase('button.sort') }}</a>
+					<a href="{{ link('rules/import') }}" class="menu-linkRow" data-xf-click="overlay">{{ phrase('button.import') }}</a>
+					<a href="{{ link('rules/export') }}" class="menu-linkRow" data-xf-click="overlay">{{ phrase('button.export') }}</a>
+				</div>
+			</div>
+		</div>
+	</div>
+</xf:pageaction>
+
+<div class="block">
+	<div class="block-outer">
+		<xf:macro template="filter_macros" name="quick_filter" arg-key="rules" arg-class="block-outer-opposite" />
+	</div>
+	
+	<div class="block-container">
+		<div class="block-body">
+			<xf:datalist>
+				
+				<xf:foreach loop="$ruleData.ruleCategories" key="$ruleCategoryId" value="$ruleCategory">
+					<xf:set var="$catActionDelete" value="{{ $ruleCategoryId > 0 }}" />
+					<xf:set var="$catActionDeleteRules" value="{{ $ruleData.rules.{$ruleCategoryId} }}" />
+					<xf:set var="$catHasActions" value="{{ $catActionDelete || $catActionDeleteRules }}" />
+					
+					<tbody class="dataList-rowGroup">
+						<xf:datarow rowtype="subsection" rowclass="{{ !$ruleCategoryId ? 'dataList-row--noHover' : '' }}">
+							<xf:if is="{{ $ruleCategoryId > 0 }}">
+								<xf:cell href="{{ link('rule-categories/edit', $ruleCategory) }}" overlay="true">
+									
+									<xf:fa icon="{$ruleCategory.icon}" /> {{ $ruleCategory.title }}
+								</xf:cell>
+							<xf:else />
+								<xf:cell colspan="{{ $catHasActions ? 1 : 2 }}">
+									{{ phrase('CMTV_Rules_rule_category_title.uncategorized') }}
+								</xf:cell>
+							</xf:if>
+							
+							<xf:if is="{{ $catHasActions }}">
+								<xf:popup label="&#8226;&#8226;&#8226;">
+									<div class="menu" data-menu="menu" aria-hidden="true" data-menu-builder="dataList">
+										<div class="menu-content">
+											<h3 class="menu-header">{{ phrase('actions') }}</h3>
+											<xf:if is="{{ $catActionDelete }}">
+												<a href="{{ link('rule-categories/delete', $ruleCategory) }}" class="menu-linkRow" data-xf-click="overlay">
+													{{ phrase('CMTV_Rules_delete_category') }}
+												</a>
+											</xf:if>
+
+											<xf:if is="{{ $catActionDeleteRules }}">
+												<a href="{{ link('rule-categories/delete-rules', $ruleCategory) }}" class="menu-linkRow" data-xf-click="overlay">
+													{{ phrase('CMTV_Rules_delete_rules_in_category') }}
+												</a>
+											</xf:if>
+										</div>
+									</div>
+								</xf:popup>
+							</xf:if>
+						</xf:datarow>
+
+						<xf:foreach loop="{$ruleData.rules.{$ruleCategoryId}}" key="$ruleId" value="$rule">
+							<xf:datarow
+										label="{$rule.title}"
+										hint="{$rule.rule_id}"
+										href="{{ link('rules/edit', $rule) }}"
+										delete="{{ link('rules/delete', $rule) }}"
+										/>
+						<xf:else />
+							<xf:datarow rowclass="dataList-row--noHover dataList-row--note">
+								<xf:cell colspan="2" class="dataList-cell--noSearch">
+									<xf:if is="{{ count($ruleData.ruleCategories) > 1 }}">
+										{{ phrase('CMTV_Rules_no_rules_have_been_added_to_this_category_yet') }}
+										<xf:else />
+										{{ phrase('CMTV_Rules_no_rules_have_been_created_yet') }}
+									</xf:if>
+								</xf:cell>
+							</xf:datarow>
+						</xf:foreach>
+					</tbody>
+				</xf:foreach>
+				
+			</xf:datalist>
+		</div>
+		<div class="block-footer">
+			<span class="block-footer-counter">{{ display_totals($ruleData.totalRules) }}</span>
+		</div>
+	</div>
+</div>]]></template>
+  <template type="admin" title="CMTV_Rules_rule_sort" version_id="1000070" version_string="1.0.0"><![CDATA[<xf:title>{{ phrase('CMTV_Rules_sort_rules') }}</xf:title>
+
+<xf:macro template="public:nestable_macros" name="setup" />
+
+<xf:form action="{{ link('rules/sort') }}" class="block" ajax="true">
+	<div class="block-container">
+		<xf:foreach loop="$ruleData.ruleCategories" key="$ruleCategoryId" value="$ruleCategory">
+			<xf:if is="{{ $ruleCategoryId > 0 }}">
+				<h4 class="block-minorHeader">{$ruleCategory.title}</h4>
+			<xf:else />
+				<h4 class="block-minorHeader">{{ phrase('CMTV_Rules_rule_category_title.uncategorized') }}</h4>
+			</xf:if>
+			<div class="block-body">
+				<div class="nestable-container" data-xf-init="nestable" data-parent-id="{$ruleCategoryId}" data-max-depth="1" data-value-target=".js-smilieData">
+					<xf:if contentcheck="true">
+						<ol class="nestable-list">
+							<xf:contentcheck>
+							<xf:foreach loop="{$ruleData.rules.{$ruleCategoryId}}" key="$ruleId" value="$rule" i="$i">
+								<li class="nestable-item" data-id="{$ruleId}">
+									<div class="nestable-handle nestable-handle--full" aria-label="{{ phrase('drag_handle')|for_attr }}"><xf:fa icon="fa-bars" /></div>
+									<div class="nestable-content">{$rule.title}</div>
+								</li>
+							</xf:foreach>
+							</xf:contentcheck>
+						</ol>
+					</xf:if>
+					<xf:hiddenval name="rules[]" value="" class="js-ruleData" />
+				</div>
+			</div>
+		</xf:foreach>
+		<xf:submitrow icon="save" rowtype="simple" />
+	</div>
+</xf:form>]]></template>
+  <template type="admin" title="CMTV_Rules_rules_export" version_id="1000070" version_string="1.0.0"><![CDATA[<xf:title>{{ phrase('confirm_action') }}</xf:title>
+
+<xf:form action="{{ link('rules/export') }}" class="block">
+	<div class="block-container">
+		<div class="block-body">
+			<xf:inforow rowtype="confirm">
+				{{ phrase('CMTV_Rules_please_confirm_that_you_want_to_export_following:') }}
+				<strong>{{ phrase('CMTV_Rules_rules') }}: {$totalRules}</strong>
+				<strong>{{ phrase('CMTV_Rules_rule_categories') }}: {$totalCategories}</strong>
+			</xf:inforow>
+		</div>
+		<xf:submitrow rowtype="simple" icon="export" />
+	</div>
+</xf:form>]]></template>
+  <template type="public" title="CMTV_Rules_help_page_rules.less" version_id="1000070" version_string="1.0.0"><![CDATA[.rules-block
+{
+	.category-icon
+	{
+		text-align: center;
+		border-right: 1px solid @xf-borderColorFaint;
+		
+		padding-right: 10px;
+		margin-right: 5px;
+	}
+	
+	.rule
+	{
+		position: relative;
+		
+		.rule-anchor
+		{
+			position: absolute;
+			top: -(10px + @{xf-CMTV_Rules_fixed_header_height}px);
+		}
+		
+		.rule-link
+		{
+			position: relative;
+			right: -3px;
+			
+			font-size: @xf-fontSizeSmall;
+			
+			opacity: 0;
+			transition: opacity .2s;
+		}
+		
+		&:hover
+		{
+			.rule-link
+			{
+				opacity: 1;
+			}
+		}
+		
+		&--selected
+		{
+			background: @xf-errorBg;
+			color: @xf-errorColor;
+			border-left: @xf-blockLinkSelected--border-width solid @xf-errorFeatureColor;
+			padding-left: (@xf-blockPaddingH - xf-default(@xf-blockLinkSelected--border-width, 0));
+		}
+	}
+}]]></template>
+  <template type="public" title="_help_page_rules" version_id="1000070" version_string="1.0.0"><![CDATA[<xf:macro template="metadata_macros" name="metadata" arg-description="{{ phrase('help_page_desc.rules') }}" />
+
+<xf:css src="CMTV_Rules_help_page_rules.less" />
+<xf:js addon="CMTV/Rules" src="CMTV/Rules/rule-highlighter.js" min="1" />
+
+<xf:if is="$ruleData.rules is empty">
+	<div class="blockMessage">{{ phrase('CMTV_Rules_no_rules_have_been_created_yet') }}</div>
+</xf:if>
+
+<xf:foreach loop="$ruleData.ruleCategories" value="$category">
+	<div class="block rules-block">
+		<div class="block-container">
+			<div class="block-header">
+				<xf:fa class="category-icon" icon="{$category.icon}" />
+				<xf:if is="$category.rule_category_id === 0">
+					{{ phrase('CMTV_Rules_rule_category_title.uncategorized') }}
+				<xf:else />
+					{$category.title}
+				</xf:if>
+			</div>
+			
+			<ol class="block-body">
+				
+				<xf:foreach loop="{$ruleData.rules.{$category.rule_category_id}}" value="$rule">
+					<li class="rule block-row block-row--separated">
+						<div id="rule-{$rule.rule_id}" class="rule-anchor"></div>
+						<div class="contentRow">
+							<div class="contentRow-main">
+								<div class="contentRow-title"><span>{$rule.title}</span> <a title="{{ phrase('CMTV_Rules_link_to_this_rule') }}" href="#rule-{$rule.rule_id}" class="rule-link"><xf:fa icon="fa-link" /></a></div>
+								<xf:if contentcheck="true">
+									<div class="contentRow-minor"><xf:contentcheck>{$rule.description}</xf:contentcheck></div>
+								</xf:if>
+							</div>
+						</div>
+					</li>				
+				</xf:foreach>
+			</ol>
+		</div>
+	</div>
+</xf:foreach>]]></template>
+</templates>

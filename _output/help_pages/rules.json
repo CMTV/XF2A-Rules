@@ -1,0 +1,8 @@
+{
+    "page_name": "rules",
+    "display_order": 45,
+    "callback_class": "CMTV\\Rules\\Help\\Rules",
+    "callback_method": "renderRules",
+    "advanced_mode": true,
+    "active": true
+}

@@ -1,0 +1,33 @@
+<xf:title>{{ phrase('CMTV_Rules_sort_rules') }}</xf:title>
+
+<xf:macro template="public:nestable_macros" name="setup" />
+
+<xf:form action="{{ link('rules/sort') }}" class="block" ajax="true">
+	<div class="block-container">
+		<xf:foreach loop="$ruleData.ruleCategories" key="$ruleCategoryId" value="$ruleCategory">
+			<xf:if is="{{ $ruleCategoryId > 0 }}">
+				<h4 class="block-minorHeader">{$ruleCategory.title}</h4>
+			<xf:else />
+				<h4 class="block-minorHeader">{{ phrase('CMTV_Rules_rule_category_title.uncategorized') }}</h4>
+			</xf:if>
+			<div class="block-body">
+				<div class="nestable-container" data-xf-init="nestable" data-parent-id="{$ruleCategoryId}" data-max-depth="1" data-value-target=".js-smilieData">
+					<xf:if contentcheck="true">
+						<ol class="nestable-list">
+							<xf:contentcheck>
+							<xf:foreach loop="{$ruleData.rules.{$ruleCategoryId}}" key="$ruleId" value="$rule" i="$i">
+								<li class="nestable-item" data-id="{$ruleId}">
+									<div class="nestable-handle nestable-handle--full" aria-label="{{ phrase('drag_handle')|for_attr }}"><xf:fa icon="fa-bars" /></div>
+									<div class="nestable-content">{$rule.title}</div>
+								</li>
+							</xf:foreach>
+							</xf:contentcheck>
+						</ol>
+					</xf:if>
+					<xf:hiddenval name="rules[]" value="" class="js-ruleData" />
+				</div>
+			</div>
+		</xf:foreach>
+		<xf:submitrow icon="save" rowtype="simple" />
+	</div>
+</xf:form>

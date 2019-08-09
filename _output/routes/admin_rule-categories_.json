@@ -1,0 +1,11 @@
+{
+    "route_type": "admin",
+    "route_prefix": "rule-categories",
+    "sub_name": "",
+    "format": ":int<rule_category_id>/",
+    "build_class": "",
+    "build_method": "",
+    "controller": "CMTV\\Rules:RuleCategory",
+    "context": "rules",
+    "action_prefix": ""
+}

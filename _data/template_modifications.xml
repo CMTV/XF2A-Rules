@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
+<template_modifications>
+  <modification type="public" template="helper_js_global" modification_key="CMTV_Rules_helper_js_global" execution_order="10" enabled="1" action="str_replace">
+    <find><![CDATA[// <!--[XF:js_global:xf_phrase_start]-->]]></find>
+    <replace><![CDATA[$0
+
+CMTV_Rules_rule_link_copied_to_clipboard: "{{ phrase('CMTV_Rules_rule_link_copied_to_clipboard')|escape('js') }}",]]></replace>
+  </modification>
+</template_modifications>

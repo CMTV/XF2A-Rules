@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="utf-8"?>
+<style_properties>
+  <style_property property_name="CMTV_Rules_fixed_header_height" group_name="misc" title="Fixed header height" description="If you use fixed header on your forum, type its height (in pixels) in this field." property_type="value" value_type="number" display_order="30">
+    <value_parameters>min=1
+step=any</value_parameters>
+    <value>"40"</value>
+  </style_property>
+</style_properties>

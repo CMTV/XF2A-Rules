@@ -1,0 +1,49 @@
+.rules-block
+{
+	.category-icon
+	{
+		text-align: center;
+		border-right: 1px solid @xf-borderColorFaint;
+		
+		padding-right: 10px;
+		margin-right: 5px;
+	}
+	
+	.rule
+	{
+		position: relative;
+		
+		.rule-anchor
+		{
+			position: absolute;
+			top: -(10px + @{xf-CMTV_Rules_fixed_header_height}px);
+		}
+		
+		.rule-link
+		{
+			position: relative;
+			right: -3px;
+			
+			font-size: @xf-fontSizeSmall;
+			
+			opacity: 0;
+			transition: opacity .2s;
+		}
+		
+		&:hover
+		{
+			.rule-link
+			{
+				opacity: 1;
+			}
+		}
+		
+		&--selected
+		{
+			background: @xf-errorBg;
+			color: @xf-errorColor;
+			border-left: @xf-blockLinkSelected--border-width solid @xf-errorFeatureColor;
+			padding-left: (@xf-blockPaddingH - xf-default(@xf-blockLinkSelected--border-width, 0));
+		}
+	}
+}

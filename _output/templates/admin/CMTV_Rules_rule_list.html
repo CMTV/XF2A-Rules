@@ -1,0 +1,98 @@
+<xf:title>{{ phrase('CMTV_Rules_rules') }}</xf:title>
+
+<xf:pageaction>
+	<div class="buttonGroup">
+		<xf:button href="{{ link('rules/add') }}" icon="add">{{ phrase('CMTV_Rules_add_rule') }}</xf:button>
+		<xf:button href="{{ link('rule-categories/add') }}" icon="add">{{ phrase('CMTV_Rules_add_rule_category') }}</xf:button>
+	
+		<div class="buttonGroup-buttonWrapper">
+			<xf:button class="menuTrigger" data-xf-click="menu" aria-expanded="false" aria-haspopup="true" title="{{ phrase('more_options') }}">&#8226;&#8226;&#8226;</xf:button>
+			<div class="menu" data-menu="menu" aria-hidden="true">
+				<div class="menu-content">
+					<h4 class="menu-header">{{ phrase('more_options') }}</h4>
+					<a href="{{ link('rules/sort') }}" class="menu-linkRow" data-xf-click="overlay">{{ phrase('button.sort') }}</a>
+					<a href="{{ link('rules/import') }}" class="menu-linkRow" data-xf-click="overlay">{{ phrase('button.import') }}</a>
+					<a href="{{ link('rules/export') }}" class="menu-linkRow" data-xf-click="overlay">{{ phrase('button.export') }}</a>
+				</div>
+			</div>
+		</div>
+	</div>
+</xf:pageaction>
+
+<div class="block">
+	<div class="block-outer">
+		<xf:macro template="filter_macros" name="quick_filter" arg-key="rules" arg-class="block-outer-opposite" />
+	</div>
+	
+	<div class="block-container">
+		<div class="block-body">
+			<xf:datalist>
+				
+				<xf:foreach loop="$ruleData.ruleCategories" key="$ruleCategoryId" value="$ruleCategory">
+					<xf:set var="$catActionDelete" value="{{ $ruleCategoryId > 0 }}" />
+					<xf:set var="$catActionDeleteRules" value="{{ $ruleData.rules.{$ruleCategoryId} }}" />
+					<xf:set var="$catHasActions" value="{{ $catActionDelete || $catActionDeleteRules }}" />
+					
+					<tbody class="dataList-rowGroup">
+						<xf:datarow rowtype="subsection" rowclass="{{ !$ruleCategoryId ? 'dataList-row--noHover' : '' }}">
+							<xf:if is="{{ $ruleCategoryId > 0 }}">
+								<xf:cell href="{{ link('rule-categories/edit', $ruleCategory) }}" overlay="true">
+									
+									<xf:fa icon="{$ruleCategory.icon}" /> {{ $ruleCategory.title }}
+								</xf:cell>
+							<xf:else />
+								<xf:cell colspan="{{ $catHasActions ? 1 : 2 }}">
+									{{ phrase('CMTV_Rules_rule_category_title.uncategorized') }}
+								</xf:cell>
+							</xf:if>
+							
+							<xf:if is="{{ $catHasActions }}">
+								<xf:popup label="&#8226;&#8226;&#8226;">
+									<div class="menu" data-menu="menu" aria-hidden="true" data-menu-builder="dataList">
+										<div class="menu-content">
+											<h3 class="menu-header">{{ phrase('actions') }}</h3>
+											<xf:if is="{{ $catActionDelete }}">
+												<a href="{{ link('rule-categories/delete', $ruleCategory) }}" class="menu-linkRow" data-xf-click="overlay">
+													{{ phrase('CMTV_Rules_delete_category') }}
+												</a>
+											</xf:if>
+
+											<xf:if is="{{ $catActionDeleteRules }}">
+												<a href="{{ link('rule-categories/delete-rules', $ruleCategory) }}" class="menu-linkRow" data-xf-click="overlay">
+													{{ phrase('CMTV_Rules_delete_rules_in_category') }}
+												</a>
+											</xf:if>
+										</div>
+									</div>
+								</xf:popup>
+							</xf:if>
+						</xf:datarow>
+
+						<xf:foreach loop="{$ruleData.rules.{$ruleCategoryId}}" key="$ruleId" value="$rule">
+							<xf:datarow
+										label="{$rule.title}"
+										hint="{$rule.rule_id}"
+										href="{{ link('rules/edit', $rule) }}"
+										delete="{{ link('rules/delete', $rule) }}"
+										/>
+						<xf:else />
+							<xf:datarow rowclass="dataList-row--noHover dataList-row--note">
+								<xf:cell colspan="2" class="dataList-cell--noSearch">
+									<xf:if is="{{ count($ruleData.ruleCategories) > 1 }}">
+										{{ phrase('CMTV_Rules_no_rules_have_been_added_to_this_category_yet') }}
+										<xf:else />
+										{{ phrase('CMTV_Rules_no_rules_have_been_created_yet') }}
+									</xf:if>
+								</xf:cell>
+							</xf:datarow>
+						</xf:foreach>
+					</tbody>
+				</xf:foreach>
+				
+			</xf:datalist>
+		</div>
+		<div class="block-footer">
+			<span class="block-footer-counter">{{ display_totals($ruleData.totalRules) }}</span>
+		</div>
+	</div>
+</div>

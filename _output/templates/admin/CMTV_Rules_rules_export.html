@@ -1,0 +1,14 @@
+<xf:title>{{ phrase('confirm_action') }}</xf:title>
+
+<xf:form action="{{ link('rules/export') }}" class="block">
+	<div class="block-container">
+		<div class="block-body">
+			<xf:inforow rowtype="confirm">
+				{{ phrase('CMTV_Rules_please_confirm_that_you_want_to_export_following:') }}
+				<strong>{{ phrase('CMTV_Rules_rules') }}: {$totalRules}</strong>
+				<strong>{{ phrase('CMTV_Rules_rule_categories') }}: {$totalCategories}</strong>
+			</xf:inforow>
+		</div>
+		<xf:submitrow rowtype="simple" icon="export" />
+	</div>
+</xf:form>

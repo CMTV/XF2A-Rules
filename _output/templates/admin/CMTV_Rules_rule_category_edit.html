@@ -1,0 +1,26 @@
+<xf:if is="$ruleCategory.isInsert()">
+	<xf:title>{{ phrase('CMTV_Rules_add_rule_category') }}</xf:title>
+	<xf:else />
+	<xf:title>{{ phrase('CMTV_Rules_edit_rule_category:') }} {$ruleCategory.title}</xf:title>
+</xf:if>
+
+<xf:pageaction if="$ruleCategory.isUpdate()">
+	<xf:button href="{{ link('rule-categories/delete', $ruleCategory) }}" icon="delete" overlay="true" />
+</xf:pageaction>
+
+<xf:form action="{{ link('rule-categories/save', $ruleCategory) }}" ajax="true" class="block">
+	<div class="block-container">
+		<div class="block-body">
+			<xf:textboxrow name="title" value="{{ $ruleCategory.exists() ? $ruleCategory.MasterTitle.phrase_text : '' }}"
+						   label="{{ phrase('title') }}"/>
+
+			<xf:textboxrow name="icon" value="{$ruleCategory.icon}" fa="{$ruleCategory.icon}" 
+						   label="{{ phrase('icon') }}" explain="{{ phrase('CMTV_Rules_icon_explain') }}" />
+
+			<xf:macro template="display_order_macros" name="row"
+					  arg-value="{$ruleCategory.display_order}" />
+		</div>
+
+		<xf:submitrow icon="save" />
+	</div>
+</xf:form>

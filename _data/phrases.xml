@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="utf-8"?>
+<phrases>
+  <phrase title="CMTV_Rules_add_rule" version_id="1000070" version_string="1.0.0"><![CDATA[Add rule]]></phrase>
+  <phrase title="CMTV_Rules_add_rule_category" version_id="1000070" version_string="1.0.0"><![CDATA[Add rule category]]></phrase>
+  <phrase title="CMTV_Rules_delete_category" version_id="1000070" version_string="1.0.0"><![CDATA[Delete category]]></phrase>
+  <phrase title="CMTV_Rules_delete_rules_in_category" version_id="1000070" version_string="1.0.0"><![CDATA[Delete rules in category]]></phrase>
+  <phrase title="CMTV_Rules_deleting_rules_in_category" version_id="1000070" version_string="1.0.0"><![CDATA[Deleting rules in category...]]></phrase>
+  <phrase title="CMTV_Rules_edit_rule" version_id="1000070" version_string="1.0.0"><![CDATA[Edit rule]]></phrase>
+  <phrase title="CMTV_Rules_edit_rule_category" version_id="1000070" version_string="1.0.0"><![CDATA[Edit rule category]]></phrase>
+  <phrase title="CMTV_Rules_icon_explain" version_id="1000070" version_string="1.0.0"><![CDATA[Font Awesome icon code. For example: <code>fa-comments</code> or <code>fas fa-adjust</code>. <a href="https://fontawesome.com/icons?d=gallery" target="_blank">List of icon codes</a>.]]></phrase>
+  <phrase title="CMTV_Rules_import_results" version_id="1000070" version_string="1.0.0"><![CDATA[Import results]]></phrase>
+  <phrase title="CMTV_Rules_import_rules" version_id="1000070" version_string="1.0.0"><![CDATA[Import rules]]></phrase>
+  <phrase title="CMTV_Rules_link_to_this_rule" version_id="1000070" version_string="1.0.0"><![CDATA[Link to this rule]]></phrase>
+  <phrase title="CMTV_Rules_no_categories_have_been_imported" version_id="1000070" version_string="1.0.0"><![CDATA[No categories have been imported.]]></phrase>
+  <phrase title="CMTV_Rules_no_rules_have_been_added_to_this_category_yet" version_id="1000070" version_string="1.0.0"><![CDATA[No rules have been added to this category yet.]]></phrase>
+  <phrase title="CMTV_Rules_no_rules_have_been_created_yet" version_id="1000070" version_string="1.0.0"><![CDATA[No rules have been created yet.]]></phrase>
+  <phrase title="CMTV_Rules_no_rules_have_been_imported" version_id="1000070" version_string="1.0.0"><![CDATA[No rules have been imported.]]></phrase>
+  <phrase title="CMTV_Rules_please_confirm_that_you_want_to_export_following" version_id="1000070" version_string="1.0.0"><![CDATA[Please confirm that you want to export the followig]]></phrase>
+  <phrase title="CMTV_Rules_please_upload_valid_rules_xml_file" version_id="1000070" version_string="1.0.0"><![CDATA[Please upload a valid rules XML file.]]></phrase>
+  <phrase title="CMTV_Rules_rule_categories" version_id="1000070" version_string="1.0.0"><![CDATA[Rule categories]]></phrase>
+  <phrase title="CMTV_Rules_rule_category" version_id="1000070" version_string="1.0.0"><![CDATA[Rule category]]></phrase>
+  <phrase title="CMTV_Rules_rule_category_title.uncategorized" version_id="1000070" version_string="1.0.0"><![CDATA[Uncategorized rules]]></phrase>
+  <phrase title="CMTV_Rules_rule_description.rule_num_one" version_id="1000070" version_string="1.0.0"><![CDATA[Rule desc]]></phrase>
+  <phrase title="CMTV_Rules_rule_description_explain" version_id="1000070" version_string="1.0.0"><![CDATA[Optionally clarify the rule, its restrictions and etc.]]></phrase>
+  <phrase title="CMTV_Rules_rule_id" version_id="1000070" version_string="1.0.0"><![CDATA[Rule ID]]></phrase>
+  <phrase title="CMTV_Rules_rule_id_explain" version_id="1000070" version_string="1.0.0"><![CDATA[The unique ID for this rule.]]></phrase>
+  <phrase title="CMTV_Rules_rule_link_copied_to_clipboard" version_id="1000070" version_string="1.0.0"><![CDATA[Rule link copied to clipboard.]]></phrase>
+  <phrase title="CMTV_Rules_rules" version_id="1000070" version_string="1.0.0"><![CDATA[Rules]]></phrase>
+  <phrase title="CMTV_Rules_rules_xml_file" version_id="1000070" version_string="1.0.0"><![CDATA[Rules XML file]]></phrase>
+  <phrase title="CMTV_Rules_skipped_rules" version_id="1000070" version_string="1.0.0"><![CDATA[Skipped rules]]></phrase>
+  <phrase title="CMTV_Rules_sort_rules" version_id="1000070" version_string="1.0.0"><![CDATA[Sort rules]]></phrase>
+  <phrase title="CMTV_Rules_this_is_unique_identifier_for_rule_cannot_be_changed" version_id="1000070" version_string="1.0.0"><![CDATA[This is the unique identifier for this rule. It cannot be changed once set.]]></phrase>
+  <phrase title="admin_navigation.CMTV_Rules" version_id="1000070" version_string="1.0.0"><![CDATA[Rules]]></phrase>
+  <phrase title="admin_permission.CMTV_Rules" version_id="1000070" version_string="1.0.0"><![CDATA[Manage rules]]></phrase>
+  <phrase title="help_page_desc.rules" version_id="1000070" version_string="1.0.0"><![CDATA[A list of rules users must stick to.]]></phrase>
+  <phrase title="help_page_title.rules" version_id="1000070" version_string="1.0.0"><![CDATA[Rules]]></phrase>
+  <phrase title="style_prop.CMTV_Rules_fixed_header_height" version_id="1000070" version_string="1.0.0"><![CDATA[Fixed header height]]></phrase>
+  <phrase title="style_prop_desc.CMTV_Rules_fixed_header_height" version_id="1000070" version_string="1.0.0"><![CDATA[If you use fixed header on your forum, type its height (in pixels) in this field.]]></phrase>
+</phrases>
