@@ -1,0 +1,52 @@
+{
+    "admin/CMTV_Rules_delete_rules.html": {
+        "version_id": 1000070,
+        "version_string": "1.0.0",
+        "hash": "ab7edcf4ec62780f211fe8a84e1b24f0"
+    },
+    "admin/CMTV_Rules_rule_category_edit.html": {
+        "version_id": 1000070,
+        "version_string": "1.0.0",
+        "hash": "7c5f307e0e90b42981c511ef3f14612e"
+    },
+    "admin/CMTV_Rules_rule_edit.html": {
+        "version_id": 1000070,
+        "version_string": "1.0.0",
+        "hash": "36c88e5b72c50dc25a4b52ee4a95f3b2"
+    },
+    "admin/CMTV_Rules_rule_import.html": {
+        "version_id": 1000070,
+        "version_string": "1.0.0",
+        "hash": "0fbbc9399a2b15a907504edf2f138b21"
+    },
+    "admin/CMTV_Rules_rule_import_results.html": {
+        "version_id": 1000070,
+        "version_string": "1.0.0",
+        "hash": "8e30716115e87cb9fee97414a7805417"
+    },
+    "admin/CMTV_Rules_rule_list.html": {
+        "version_id": 1000070,
+        "version_string": "1.0.0",
+        "hash": "bea28b8a2cf69dfe8144465ebd3e4996"
+    },
+    "admin/CMTV_Rules_rule_sort.html": {
+        "version_id": 1000070,
+        "version_string": "1.0.0",
+        "hash": "b8549e8e0e25dbd8995e598ef4fbe380"
+    },
+    "admin/CMTV_Rules_rules_export.html": {
+        "version_id": 1000070,
+        "version_string": "1.0.0",
+        "hash": "4a36a73f74f201e0774b9fa9efccaebf"
+    },
+    "public/CMTV_Rules_help_page_rules.less": {
+        "version_id": 1000070,
+        "version_string": "1.0.0",
+        "hash": "8ba7a848d43a009a34e19c42559a1fa2"
+    },
+    "public/_help_page_rules.html": {
+        "version_id": 1000070,
+        "version_string": "1.0.0",
+        "hash": "4b249e824c99adafe8e57a3f6621ecc1"
+    }
+}

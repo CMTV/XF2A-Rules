@@ -1,0 +1,40 @@
+<xf:macro template="metadata_macros" name="metadata" arg-description="{{ phrase('help_page_desc.rules') }}" />
+
+<xf:css src="CMTV_Rules_help_page_rules.less" />
+<xf:js addon="CMTV/Rules" src="CMTV/Rules/rule-highlighter.js" min="1" />
+
+<xf:if is="$ruleData.rules is empty">
+	<div class="blockMessage">{{ phrase('CMTV_Rules_no_rules_have_been_created_yet') }}</div>
+</xf:if>
+
+<xf:foreach loop="$ruleData.ruleCategories" value="$category">
+	<div class="block rules-block">
+		<div class="block-container">
+			<div class="block-header">
+				<xf:fa class="category-icon" icon="{$category.icon}" />
+				<xf:if is="$category.rule_category_id === 0">
+					{{ phrase('CMTV_Rules_rule_category_title.uncategorized') }}
+				<xf:else />
+					{$category.title}
+				</xf:if>
+			</div>
+			
+			<ol class="block-body">
+				
+				<xf:foreach loop="{$ruleData.rules.{$category.rule_category_id}}" value="$rule">
+					<li class="rule block-row block-row--separated">
+						<div id="rule-{$rule.rule_id}" class="rule-anchor"></div>
+						<div class="contentRow">
+							<div class="contentRow-main">
+								<div class="contentRow-title"><span>{$rule.title}</span> <a title="{{ phrase('CMTV_Rules_link_to_this_rule') }}" href="#rule-{$rule.rule_id}" class="rule-link"><xf:fa icon="fa-link" /></a></div>
+								<xf:if contentcheck="true">
+									<div class="contentRow-minor"><xf:contentcheck>{$rule.description}</xf:contentcheck></div>
+								</xf:if>
+							</div>
+						</div>
+					</li>				
+				</xf:foreach>
+			</ol>
+		</div>
+	</div>
+</xf:foreach>
