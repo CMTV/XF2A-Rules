@@ -71,7 +71,7 @@ abstract class TitleEntity extends Entity
             $phrase = $this->_em->create('XF:Phrase');
             $phrase->title = $this->_getDeferredValue(function () { return $this->getTitlePhraseName(); }, 'save');
             $phrase->language_id = 0;
-            $phrase->addon_id = 'CMTV/Rules';
+            $phrase->addon_id = '';
         }
 
         return $phrase;

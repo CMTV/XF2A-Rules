@@ -56,6 +56,16 @@ class RuleCategory extends TitleEntity
             ]
         ];
 
+        $structure->relations = [
+            'Rules' => [
+                'entity' => C::__('Rule'),
+                'type' => self::TO_MANY,
+                'conditions' => [
+                    ['rule_category_id', '=', '$rule_category_id']
+                ]
+            ]
+        ];
+
         // Adding title
         parent::addStructureElements($structure);
 

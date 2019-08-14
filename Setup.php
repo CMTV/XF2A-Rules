@@ -7,6 +7,8 @@
 namespace CMTV\Rules;
 
 use CMTV\Rules\Constants as C;
+use CMTV\Rules\Entity\Rule;
+use CMTV\Rules\Entity\RuleCategory;
 use XF\AddOn\AbstractSetup;
 use XF\AddOn\StepRunnerInstallTrait;
 use XF\AddOn\StepRunnerUninstallTrait;
@@ -54,5 +56,53 @@ class Setup extends AbstractSetup
     {
         $this->schemaManager()->dropTable(C::_db('rule'));
         $this->schemaManager()->dropTable(C::_db('category'));
+    }
+
+    /* Removing phrases */
+    public function uninstallStep2()
+    {
+        $phrases = $this->app->finder('XF:Phrase')->where(['title', 'LIKE', 'CMTV_Rules_%'])->fetch();
+
+        foreach ($phrases as $phrase)
+        {
+            $phrase->delete(false);
+        }
+    }
+
+    //
+    // UPGRADE
+    //
+
+    // Removing 'addon_id' from all dynamically created phrases (rules and rule categories)
+    public function upgrade1000270Step1(array $stepParams = [])
+    {
+        $rules = \XF::finder(C::__('Rule'))->fetch();
+
+        /** @var Rule $rule */
+        foreach ($rules as $rule)
+        {
+            if ($rule->MasterTitle)
+            {
+                $rule->MasterTitle->fastUpdate('addon_id', '');
+            }
+
+            if ($rule->MasterDescription)
+            {
+                $rule->MasterDescription->fastUpdate('addon_id', '');
+            }
+        }
+
+        unset($rules);
+
+        $categories = \XF::finder(C::__('RuleCategory'))->fetch();
+
+        /** @var RuleCategory $category */
+        foreach ($categories as $category)
+        {
+            if ($category->MasterTitle)
+            {
+                $category->MasterTitle->fastUpdate('addon_id', '');
+            }
+        }
     }
 }

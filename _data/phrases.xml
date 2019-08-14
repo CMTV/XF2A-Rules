@@ -20,7 +20,6 @@
   <phrase title="CMTV_Rules_rule_categories" version_id="1000070" version_string="1.0.0"><![CDATA[Rule categories]]></phrase>
   <phrase title="CMTV_Rules_rule_category" version_id="1000070" version_string="1.0.0"><![CDATA[Rule category]]></phrase>
   <phrase title="CMTV_Rules_rule_category_title.uncategorized" version_id="1000070" version_string="1.0.0"><![CDATA[Uncategorized rules]]></phrase>
-  <phrase title="CMTV_Rules_rule_description.rule_num_one" version_id="1000070" version_string="1.0.0"><![CDATA[Rule desc]]></phrase>
   <phrase title="CMTV_Rules_rule_description_explain" version_id="1000070" version_string="1.0.0"><![CDATA[Optionally clarify the rule, its restrictions and etc.]]></phrase>
   <phrase title="CMTV_Rules_rule_id" version_id="1000070" version_string="1.0.0"><![CDATA[Rule ID]]></phrase>
   <phrase title="CMTV_Rules_rule_id_explain" version_id="1000070" version_string="1.0.0"><![CDATA[The unique ID for this rule.]]></phrase>
